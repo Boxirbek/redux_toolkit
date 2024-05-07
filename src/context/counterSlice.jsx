@@ -10,7 +10,10 @@ export const counterSlice = createSlice({
             state.value += action.payload;
         },
         decrementByValue: (state, action) => {
-            state.value -= action.payload;
+            // Tekshiramiz: Qiymat 0 bo'lsa, bosishni yo'qotamiz
+            if (state.value - action.payload >= 0) {
+                state.value -= action.payload;
+            }
         },
         resetValue: state => {
             state.value = 0;
